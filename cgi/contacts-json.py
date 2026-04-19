@@ -24,11 +24,12 @@ try:
     cursor = conn.cursor()
     cursor.execute("SELECT name, phone, email FROM contacts")
     for name, phone, email in cursor.fetchall():
-    response["data"].append({
-        "name": name,
-        "telephone": phone,
-        "email": email
-    })
+        response["data"].append({
+             "name": name,
+            "telephone": phone,  
+            "email": email
+             })
+             
     rows = cursor.fetchall()
 
     for name, phone in rows:
