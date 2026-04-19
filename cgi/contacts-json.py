@@ -28,5 +28,3 @@ print(json.dumps({
     "ok": True,
     "data": data
 }))
-
-conn.close()
