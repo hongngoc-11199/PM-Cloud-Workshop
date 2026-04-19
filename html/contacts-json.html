@@ -7,12 +7,19 @@
 
 <h1>Contact List</h1>
 
+<table id="table">
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+    </tr>
 </table>
 
 <script>
 fetch('/cgi-bin/contacts-json.py')
 .then(res => res.json())
 .then(data => {
+
     let table = document.getElementById("table");
 
     data.data.forEach(item => {
@@ -24,8 +31,9 @@ fetch('/cgi-bin/contacts-json.py')
             <td>${item.email}</td>
         `;
     });
+
+})
+.catch(err => {
+    console.log("Fetch error:", err);
 });
 </script>
-
-</body>
-</html>
