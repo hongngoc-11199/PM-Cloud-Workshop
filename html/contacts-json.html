@@ -14,8 +14,11 @@
 <table id="contact-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Telephone</th>
+            row.innerHTML = `
+         <td>${item.name}</td>
+        <td>${item.telephone}</td>
+        <td>${item.email}</td>
+`;
         </tr>
     </thead>
     <tbody></tbody>
