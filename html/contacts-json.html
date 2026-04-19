@@ -1,55 +1,36 @@
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Contacts JSON</title>
-
-    <!-- CSS 연결 -->
-    <link rel="stylesheet" href="/style.css">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1 style="text-align:center;">Contacts List</h1>
+<h1>Contact List</h1>
 
-<table id="contact-table">
-    <thead>
-        <tr>
-            row.innerHTML = `
-         <td>${item.name}</td>
-        <td>${item.telephone}</td>
-        <td>${item.email}</td>
-`;
-        </tr>
-    </thead>
-    <tbody></tbody>
+<table id="table">
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+    </tr>
 </table>
 
 <script>
 fetch('/cgi-bin/contacts-json.py')
-  .then(res => res.json())
-  .then(res => {
-    const tbody = document.querySelector('#contact-table tbody');
+.then(res => res.json())
+.then(data => {
+    let table = document.getElementById("table");
 
-    if (!res.ok) {
-        tbody.innerHTML = "<tr><td colspan='2'>Error: " + res.error + "</td></tr>";
-        return;
-    }
-
-    res.data.forEach(item => {
-        const row = document.createElement('tr');
+    data.data.forEach(item => {
+        let row = table.insertRow();
 
         row.innerHTML = `
             <td>${item.name}</td>
             <td>${item.telephone}</td>
+            <td>${item.email}</td>
         `;
-
-        tbody.appendChild(row);
     });
-  })
-  .catch(err => {
-    document.querySelector('#contact-table tbody').innerHTML =
-      "<tr><td colspan='2'>Fetch error</td></tr>";
-  });
+});
 </script>
 
 </body>
